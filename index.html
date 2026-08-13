@@ -1,0 +1,1787 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+  <meta charset="UTF-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1.0">
+  <title>SHAIRA — Modern Fashion, Beauty & Accessories</title>
+  
+  <!-- Fonts -->
+  <link rel="preconnect" href="https://fonts.googleapis.com">
+  <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+  <link href="https://fonts.googleapis.com/css2?family=Cormorant+Garamond:ital,wght@0,400;0,500;0,600;0,700;1,400&family=Plus+Jakarta+Sans:wght@300;400;500;600;700&display=swap" rel="stylesheet">
+  
+  <!-- Icons -->
+  <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.4.0/css/all.min.css">
+
+  <style>
+    /* ==========================================
+       SHAIRA DESIGN SYSTEM & CORE CSS
+       ========================================== */
+    :root {
+      --primary: #121212;
+      --primary-light: #2c2c2c;
+      --accent: #d4a3a8;
+      --accent-hover: #b88388;
+      --bg-main: #FAF8F5;
+      --bg-card: #FFFFFF;
+      --bg-alt: #F4E8E1;
+      --text-main: #232323;
+      --text-muted: #666666;
+      --border-color: #E8E2DA;
+      --shadow-sm: 0 4px 12px rgba(0, 0, 0, 0.03);
+      --shadow-md: 0 8px 24px rgba(0, 0, 0, 0.06);
+      --shadow-lg: 0 16px 36px rgba(0, 0, 0, 0.1);
+      --radius-sm: 4px;
+      --radius-md: 8px;
+      --radius-lg: 16px;
+      --transition: all 0.3s cubic-bezier(0.25, 0.8, 0.25, 1);
+      --font-heading: 'Cormorant Garamond', serif;
+      --font-body: 'Plus Jakarta Sans', sans-serif;
+    }
+
+    * {
+      box-sizing: border-box;
+      margin: 0;
+      padding: 0;
+      -webkit-tap-highlight-color: transparent;
+    }
+
+    html {
+      scroll-behavior: smooth;
+    }
+
+    body {
+      font-family: var(--font-body);
+      background-color: var(--bg-main);
+      color: var(--text-main);
+      line-height: 1.6;
+      overflow-x: hidden;
+      padding-bottom: 70px; /* Space for mobile nav bar */
+    }
+
+    @media (min-width: 992px) {
+      body { padding-bottom: 0; }
+    }
+
+    /* Typography */
+    h1, h2, h3, h4, .brand-font {
+      font-family: var(--font-heading);
+      letter-spacing: -0.02em;
+      font-weight: 600;
+    }
+
+    a {
+      text-decoration: none;
+      color: inherit;
+      transition: var(--transition);
+    }
+
+    button {
+      cursor: pointer;
+      border: none;
+      outline: none;
+      background: none;
+      font-family: var(--font-body);
+      transition: var(--transition);
+    }
+
+    img {
+      max-width: 100%;
+      height: auto;
+      display: block;
+      object-fit: cover;
+    }
+
+    .container {
+      width: 100%;
+      max-width: 1320px;
+      margin: 0 auto;
+      padding: 0 1.25rem;
+    }
+
+    /* Utility Badges & Buttons */
+    .btn {
+      display: inline-flex;
+      align-items: center;
+      justify-content: center;
+      gap: 0.5rem;
+      padding: 0.85rem 1.75rem;
+      font-size: 0.875rem;
+      font-weight: 600;
+      text-transform: uppercase;
+      letter-spacing: 0.1em;
+      border-radius: var(--radius-sm);
+      transition: var(--transition);
+    }
+
+    .btn-primary {
+      background-color: var(--primary);
+      color: #FFFFFF;
+    }
+
+    .btn-primary:hover {
+      background-color: var(--primary-light);
+      transform: translateY(-2px);
+      box-shadow: var(--shadow-md);
+    }
+
+    .btn-outline {
+      border: 1px solid var(--primary);
+      color: var(--primary);
+    }
+
+    .btn-outline:hover {
+      background-color: var(--primary);
+      color: #FFFFFF;
+    }
+
+    .badge {
+      display: inline-block;
+      padding: 0.25rem 0.6rem;
+      font-size: 0.7rem;
+      font-weight: 700;
+      text-transform: uppercase;
+      letter-spacing: 0.05em;
+      border-radius: var(--radius-sm);
+    }
+
+    .badge-new { background: #E3F2FD; color: #0D47A1; }
+    .badge-bestseller { background: #FFF3E0; color: #E65100; }
+    .badge-trending { background: #F3E5F5; color: #4A148C; }
+    .badge-limited { background: #E8F5E9; color: #1B5E20; }
+    .badge-sale { background: #FFEBEE; color: #B71C1C; }
+
+    /* ==========================================
+       HEADER & NAVIGATION
+       ========================================== */
+    .top-bar {
+      background: var(--primary);
+      color: #FFFFFF;
+      font-size: 0.75rem;
+      text-align: center;
+      padding: 0.5rem 1rem;
+      letter-spacing: 0.1em;
+      text-transform: uppercase;
+    }
+
+    .header {
+      position: sticky;
+      top: 0;
+      background: rgba(250, 248, 245, 0.95);
+      backdrop-filter: blur(10px);
+      z-index: 1000;
+      border-bottom: 1px solid var(--border-color);
+      transition: var(--transition);
+    }
+
+    .header-inner {
+      display: flex;
+      align-items: center;
+      justify-content: space-between;
+      height: 75px;
+    }
+
+    .brand-logo {
+      font-size: 2.2rem;
+      font-weight: 700;
+      letter-spacing: 0.15em;
+      color: var(--primary);
+      text-transform: uppercase;
+    }
+
+    .nav-menu {
+      display: none;
+      gap: 2rem;
+    }
+
+    @media (min-width: 992px) {
+      .nav-menu { display: flex; }
+    }
+
+    .nav-link {
+      font-size: 0.9rem;
+      font-weight: 500;
+      text-transform: uppercase;
+      letter-spacing: 0.08em;
+      color: var(--text-main);
+      position: relative;
+    }
+
+    .nav-link::after {
+      content: '';
+      position: absolute;
+      bottom: -4px;
+      left: 0;
+      width: 0;
+      height: 2px;
+      background-color: var(--accent);
+      transition: var(--transition);
+    }
+
+    .nav-link:hover::after,
+    .nav-link.active::after {
+      width: 100%;
+    }
+
+    .header-actions {
+      display: flex;
+      align-items: center;
+      gap: 1.25rem;
+    }
+
+    .action-icon {
+      font-size: 1.2rem;
+      color: var(--primary);
+      position: relative;
+      cursor: pointer;
+    }
+
+    .badge-count {
+      position: absolute;
+      top: -8px;
+      right: -10px;
+      background: var(--accent);
+      color: #FFFFFF;
+      font-size: 0.65rem;
+      font-weight: 700;
+      width: 18px;
+      height: 18px;
+      border-radius: 50%;
+      display: flex;
+      align-items: center;
+      justify-content: center;
+    }
+
+    /* Mobile Bottom Navigation */
+    .mobile-nav {
+      position: fixed;
+      bottom: 0;
+      left: 0;
+      width: 100%;
+      background: #FFFFFF;
+      border-top: 1px solid var(--border-color);
+      display: flex;
+      justify-content: space-around;
+      padding: 0.6rem 0;
+      z-index: 999;
+      box-shadow: 0 -4px 12px rgba(0,0,0,0.05);
+    }
+
+    @media (min-width: 992px) {
+      .mobile-nav { display: none; }
+    }
+
+    .mobile-nav-item {
+      display: flex;
+      flex-direction: column;
+      align-items: center;
+      font-size: 0.7rem;
+      color: var(--text-muted);
+      gap: 0.2rem;
+    }
+
+    .mobile-nav-item i {
+      font-size: 1.2rem;
+    }
+
+    .mobile-nav-item.active {
+      color: var(--primary);
+      font-weight: 600;
+    }
+
+    /* ==========================================
+       HERO CAMPAIGN SECTION
+       ========================================== */
+    .hero {
+      position: relative;
+      background: var(--bg-alt);
+      padding: 3rem 0;
+      min-height: 80vh;
+      display: flex;
+      align-items: center;
+      overflow: hidden;
+    }
+
+    .hero-grid {
+      display: grid;
+      grid-template-columns: 1fr;
+      gap: 2.5rem;
+      align-items: center;
+    }
+
+    @media (min-width: 992px) {
+      .hero-grid { grid-template-columns: 1fr 1fr; }
+    }
+
+    .hero-subtitle {
+      font-size: 0.85rem;
+      text-transform: uppercase;
+      letter-spacing: 0.25em;
+      color: var(--accent-hover);
+      margin-bottom: 0.75rem;
+      font-weight: 700;
+    }
+
+    .hero-title {
+      font-size: 3rem;
+      line-height: 1.1;
+      margin-bottom: 1.25rem;
+    }
+
+    @media (min-width: 768px) {
+      .hero-title { font-size: 4.2rem; }
+    }
+
+    .hero-desc {
+      color: var(--text-muted);
+      margin-bottom: 2rem;
+      font-size: 1.05rem;
+      max-width: 500px;
+    }
+
+    .hero-image-wrapper {
+      position: relative;
+      border-radius: var(--radius-lg);
+      overflow: hidden;
+      box-shadow: var(--shadow-lg);
+    }
+
+    .hero-image-wrapper img {
+      width: 100%;
+      height: 480px;
+      object-fit: cover;
+      transform: scale(1.02);
+      transition: var(--transition);
+    }
+
+    /* ==========================================
+       SHAIRA COLLECTION & FILTERS
+       ========================================== */
+    .section-title-wrap {
+      text-align: center;
+      margin-bottom: 3rem;
+    }
+
+    .section-subtitle {
+      font-size: 0.8rem;
+      text-transform: uppercase;
+      letter-spacing: 0.2em;
+      color: var(--accent-hover);
+      font-weight: 700;
+      margin-bottom: 0.5rem;
+    }
+
+    .section-title {
+      font-size: 2.5rem;
+    }
+
+    /* Filter Controls */
+    .collection-controls {
+      display: flex;
+      flex-wrap: wrap;
+      gap: 1rem;
+      justify-content: space-between;
+      align-items: center;
+      margin-bottom: 2rem;
+      padding-bottom: 1rem;
+      border-bottom: 1px solid var(--border-color);
+    }
+
+    .filter-tabs {
+      display: flex;
+      gap: 0.5rem;
+      overflow-x: auto;
+      padding-bottom: 0.5rem;
+      width: 100%;
+    }
+
+    @media (min-width: 768px) {
+      .filter-tabs { width: auto; padding-bottom: 0; }
+    }
+
+    .filter-btn {
+      padding: 0.5rem 1.25rem;
+      border-radius: 30px;
+      border: 1px solid var(--border-color);
+      font-size: 0.85rem;
+      font-weight: 500;
+      white-space: nowrap;
+      background: #FFFFFF;
+    }
+
+    .filter-btn.active, .filter-btn:hover {
+      background: var(--primary);
+      color: #FFFFFF;
+      border-color: var(--primary);
+    }
+
+    .search-sort-wrap {
+      display: flex;
+      gap: 1rem;
+      width: 100%;
+      align-items: center;
+    }
+
+    @media (min-width: 768px) {
+      .search-sort-wrap { width: auto; }
+    }
+
+    .search-box {
+      position: relative;
+      flex-grow: 1;
+    }
+
+    .search-box input {
+      width: 100%;
+      padding: 0.6rem 1rem 0.6rem 2.2rem;
+      border: 1px solid var(--border-color);
+      border-radius: 30px;
+      font-size: 0.85rem;
+      outline: none;
+    }
+
+    .search-box i {
+      position: absolute;
+      left: 0.8rem;
+      top: 50%;
+      transform: translateY(-50%);
+      color: var(--text-muted);
+      font-size: 0.85rem;
+    }
+
+    .sort-select {
+      padding: 0.6rem 1rem;
+      border: 1px solid var(--border-color);
+      border-radius: 30px;
+      font-size: 0.85rem;
+      outline: none;
+      background: #FFFFFF;
+    }
+
+    /* Product Grid */
+    .product-grid {
+      display: grid;
+      grid-template-columns: repeat(2, 1fr);
+      gap: 1rem;
+    }
+
+    @media (min-width: 768px) {
+      .product-grid { grid-template-columns: repeat(3, 1fr); gap: 1.75rem; }
+    }
+
+    @media (min-width: 1200px) {
+      .product-grid { grid-template-columns: repeat(4, 1fr); gap: 2rem; }
+    }
+
+    .product-card {
+      background: var(--bg-card);
+      border-radius: var(--radius-md);
+      overflow: hidden;
+      border: 1px solid rgba(0,0,0,0.04);
+      box-shadow: var(--shadow-sm);
+      transition: var(--transition);
+      display: flex;
+      flex-direction: column;
+      position: relative;
+    }
+
+    .product-card:hover {
+      transform: translateY(-5px);
+      box-shadow: var(--shadow-md);
+    }
+
+    .card-thumb {
+      position: relative;
+      padding-top: 125%; /* 4:5 Aspect Ratio */
+      overflow: hidden;
+      background: #f8f8f8;
+    }
+
+    .card-thumb img {
+      position: absolute;
+      top: 0;
+      left: 0;
+      width: 100%;
+      height: 100%;
+      object-fit: cover;
+      transition: transform 0.5s ease;
+    }
+
+    .product-card:hover .card-thumb img {
+      transform: scale(1.06);
+    }
+
+    .card-badge {
+      position: absolute;
+      top: 10px;
+      left: 10px;
+      z-index: 2;
+    }
+
+    .wishlist-btn {
+      position: absolute;
+      top: 10px;
+      right: 10px;
+      width: 32px;
+      height: 32px;
+      border-radius: 50%;
+      background: rgba(255, 255, 255, 0.9);
+      display: flex;
+      align-items: center;
+      justify-content: center;
+      color: var(--primary);
+      z-index: 2;
+      box-shadow: 0 2px 6px rgba(0,0,0,0.1);
+    }
+
+    .wishlist-btn.active i {
+      color: #e74c3c;
+    }
+
+    .quick-view-btn {
+      position: absolute;
+      bottom: 10px;
+      left: 50%;
+      transform: translateX(-50%) translateY(20px);
+      background: rgba(18, 18, 18, 0.85);
+      color: #FFFFFF;
+      padding: 0.4rem 0.8rem;
+      border-radius: 20px;
+      font-size: 0.75rem;
+      font-weight: 500;
+      opacity: 0;
+      transition: var(--transition);
+      white-space: nowrap;
+    }
+
+    .product-card:hover .quick-view-btn {
+      opacity: 1;
+      transform: translateX(-50%) translateY(0);
+    }
+
+    .card-body {
+      padding: 1rem;
+      display: flex;
+      flex-direction: column;
+      flex-grow: 1;
+    }
+
+    .card-category {
+      font-size: 0.7rem;
+      text-transform: uppercase;
+      letter-spacing: 0.08em;
+      color: var(--text-muted);
+      margin-bottom: 0.25rem;
+    }
+
+    .card-title {
+      font-size: 1rem;
+      font-weight: 600;
+      color: var(--text-main);
+      margin-bottom: 0.4rem;
+      display: -webkit-box;
+      -webkit-line-clamp: 1;
+      -webkit-box-orient: vertical;
+      overflow: hidden;
+    }
+
+    .card-rating {
+      font-size: 0.75rem;
+      color: #ffc107;
+      margin-bottom: 0.5rem;
+      display: flex;
+      align-items: center;
+      gap: 0.25rem;
+    }
+
+    .rating-count {
+      color: var(--text-muted);
+      font-size: 0.7rem;
+    }
+
+    .card-price-wrap {
+      display: flex;
+      align-items: center;
+      gap: 0.5rem;
+      margin-top: auto;
+      margin-bottom: 0.75rem;
+    }
+
+    .card-price {
+      font-size: 1.1rem;
+      font-weight: 700;
+      color: var(--primary);
+    }
+
+    .card-price-old {
+      font-size: 0.85rem;
+      color: var(--text-muted);
+      text-decoration: line-through;
+    }
+
+    .add-to-cart-btn {
+      width: 100%;
+      padding: 0.6rem;
+      background: var(--bg-alt);
+      color: var(--primary);
+      font-size: 0.8rem;
+      font-weight: 700;
+      text-transform: uppercase;
+      letter-spacing: 0.05em;
+      border-radius: var(--radius-sm);
+    }
+
+    .add-to-cart-btn:hover {
+      background: var(--primary);
+      color: #FFFFFF;
+    }
+
+    /* ==========================================
+       MODALS & DRAWER (Quick View, Cart, Reviews)
+       ========================================== */
+    .modal-overlay {
+      position: fixed;
+      top: 0;
+      left: 0;
+      width: 100%;
+      height: 100%;
+      background: rgba(0, 0, 0, 0.6);
+      backdrop-filter: blur(4px);
+      z-index: 2000;
+      display: flex;
+      align-items: center;
+      justify-content: center;
+      opacity: 0;
+      visibility: hidden;
+      transition: var(--transition);
+      padding: 1rem;
+    }
+
+    .modal-overlay.active {
+      opacity: 1;
+      visibility: visible;
+    }
+
+    .modal-card {
+      background: #FFFFFF;
+      width: 100%;
+      max-width: 850px;
+      max-height: 90vh;
+      border-radius: var(--radius-md);
+      overflow-y: auto;
+      position: relative;
+      transform: translateY(20px);
+      transition: var(--transition);
+      box-shadow: var(--shadow-lg);
+    }
+
+    .modal-overlay.active .modal-card {
+      transform: translateY(0);
+    }
+
+    .modal-close {
+      position: absolute;
+      top: 15px;
+      right: 15px;
+      font-size: 1.5rem;
+      z-index: 10;
+      color: var(--text-main);
+    }
+
+    .quickview-grid {
+      display: grid;
+      grid-template-columns: 1fr;
+    }
+
+    @media (min-width: 768px) {
+      .quickview-grid { grid-template-columns: 1fr 1fr; }
+    }
+
+    .quickview-img-wrap img {
+      width: 100%;
+      height: 100%;
+      min-height: 350px;
+      object-fit: cover;
+    }
+
+    .quickview-content {
+      padding: 2rem;
+      display: flex;
+      flex-direction: column;
+      justify-content: center;
+    }
+
+    /* Cart Drawer */
+    .drawer {
+      position: fixed;
+      top: 0;
+      right: -100%;
+      width: 100%;
+      max-width: 420px;
+      height: 100%;
+      background: #FFFFFF;
+      z-index: 2500;
+      box-shadow: -5px 0 25px rgba(0,0,0,0.15);
+      transition: var(--transition);
+      display: flex;
+      flex-direction: column;
+    }
+
+    .drawer.active {
+      right: 0;
+    }
+
+    .drawer-header {
+      padding: 1.25rem 1.5rem;
+      border-bottom: 1px solid var(--border-color);
+      display: flex;
+      justify-content: space-between;
+      align-items: center;
+    }
+
+    .drawer-body {
+      padding: 1.5rem;
+      flex-grow: 1;
+      overflow-y: auto;
+    }
+
+    .cart-item {
+      display: flex;
+      gap: 1rem;
+      margin-bottom: 1.25rem;
+      padding-bottom: 1.25rem;
+      border-bottom: 1px solid var(--border-color);
+    }
+
+    .cart-item img {
+      width: 70px;
+      height: 85px;
+      border-radius: var(--radius-sm);
+      object-fit: cover;
+    }
+
+    .cart-item-details {
+      flex-grow: 1;
+    }
+
+    .cart-item-title {
+      font-weight: 600;
+      font-size: 0.9rem;
+      margin-bottom: 0.25rem;
+    }
+
+    .cart-item-price {
+      font-weight: 700;
+      font-size: 0.9rem;
+      color: var(--primary);
+    }
+
+    .quantity-control {
+      display: inline-flex;
+      align-items: center;
+      border: 1px solid var(--border-color);
+      border-radius: 4px;
+      margin-top: 0.5rem;
+    }
+
+    .quantity-btn {
+      padding: 0.2rem 0.6rem;
+      font-size: 0.8rem;
+    }
+
+    .quantity-input {
+      width: 30px;
+      text-align: center;
+      font-size: 0.8rem;
+      border: none;
+    }
+
+    .drawer-footer {
+      padding: 1.5rem;
+      border-top: 1px solid var(--border-color);
+      background: var(--bg-main);
+    }
+
+    .summary-row {
+      display: flex;
+      justify-content: space-between;
+      font-size: 0.9rem;
+      margin-bottom: 0.5rem;
+    }
+
+    .summary-row.total {
+      font-size: 1.2rem;
+      font-weight: 700;
+      color: var(--primary);
+      margin-top: 0.5rem;
+      padding-top: 0.5rem;
+      border-top: 1px dashed var(--border-color);
+    }
+
+    /* Toast Notification */
+    .toast {
+      position: fixed;
+      bottom: 80px;
+      right: 20px;
+      background: var(--primary);
+      color: #FFFFFF;
+      padding: 0.8rem 1.25rem;
+      border-radius: var(--radius-sm);
+      font-size: 0.85rem;
+      z-index: 3000;
+      box-shadow: var(--shadow-md);
+      transform: translateY(100px);
+      opacity: 0;
+      transition: var(--transition);
+      display: flex;
+      align-items: center;
+      gap: 0.5rem;
+    }
+
+    @media (min-width: 992px) {
+      .toast { bottom: 30px; }
+    }
+
+    .toast.show {
+      transform: translateY(0);
+      opacity: 1;
+    }
+
+    /* Customer Reviews Section Style */
+    .reviews-section {
+      background: #FFFFFF;
+      padding: 3rem 0;
+      margin-top: 4rem;
+      border-top: 1px solid var(--border-color);
+    }
+
+    .review-card {
+      padding: 1.25rem;
+      border-radius: var(--radius-md);
+      background: var(--bg-main);
+      margin-bottom: 1rem;
+    }
+
+    .review-header {
+      display: flex;
+      justify-content: space-between;
+      margin-bottom: 0.5rem;
+    }
+
+    .reviewer-name {
+      font-weight: 600;
+      font-size: 0.9rem;
+    }
+
+    .verified-badge {
+      font-size: 0.7rem;
+      color: #2e7d32;
+      display: inline-flex;
+      align-items: center;
+      gap: 0.2rem;
+      margin-left: 0.5rem;
+    }
+
+    .helpful-btn {
+      font-size: 0.75rem;
+      color: var(--text-muted);
+      margin-top: 0.5rem;
+      display: inline-flex;
+      align-items: center;
+      gap: 0.3rem;
+    }
+
+    /* Order History Cards for Mobile */
+    .order-card {
+      background: #FFFFFF;
+      border: 1px solid var(--border-color);
+      border-radius: var(--radius-md);
+      padding: 1rem;
+      margin-bottom: 1rem;
+    }
+
+    .order-header {
+      display: flex;
+      justify-content: space-between;
+      border-bottom: 1px solid var(--border-color);
+      padding-bottom: 0.5rem;
+      margin-bottom: 0.75rem;
+      font-size: 0.85rem;
+    }
+
+    /* Footer */
+    .footer {
+      background: var(--primary);
+      color: #FFFFFF;
+      padding: 4rem 0 2rem 0;
+    }
+
+    .footer-grid {
+      display: grid;
+      grid-template-columns: 1fr;
+      gap: 2.5rem;
+      margin-bottom: 3rem;
+    }
+
+    @media (min-width: 768px) {
+      .footer-grid { grid-template-columns: 2fr 1fr 1fr 1fr; }
+    }
+
+    .footer-title {
+      font-size: 1.2rem;
+      margin-bottom: 1.2rem;
+      color: var(--accent);
+    }
+
+    .footer-links {
+      list-style: none;
+    }
+
+    .footer-links li {
+      margin-bottom: 0.6rem;
+    }
+
+    .footer-links a {
+      color: #CCCCCC;
+      font-size: 0.85rem;
+    }
+
+    .footer-links a:hover {
+      color: #FFFFFF;
+    }
+
+    .footer-bottom {
+      border-top: 1px solid rgba(255,255,255,0.1);
+      padding-top: 1.5rem;
+      text-align: center;
+      font-size: 0.8rem;
+      color: #888888;
+    }
+  </style>
+</head>
+<body>
+
+  <!-- Top Announcement Bar -->
+  <div class="top-bar">
+    Complimentary Express Shipping Across the Philippines on Orders Above ₱1,999
+  </div>
+
+  <!-- Main Desktop / Mobile Header -->
+  <header class="header">
+    <div class="container header-inner">
+      <a href="#" class="brand-logo brand-font">SHAIRA</a>
+      
+      <nav class="nav-menu">
+        <a href="#hero" class="nav-link active">Home</a>
+        <a href="#collection" class="nav-link">SHAIRA Collection</a>
+        <a href="#why-shaira" class="nav-link">About SHAIRA</a>
+        <a href="#reviews" class="nav-link">Reviews</a>
+      </nav>
+
+      <div class="header-actions">
+        <div class="action-icon" onclick="toggleSearchModal()" title="Search">
+          <i class="fa-solid fa-magnifying-glass"></i>
+        </div>
+        <div class="action-icon" onclick="openWishlistDrawer()" title="Wishlist">
+          <i class="fa-regular fa-heart"></i>
+          <span class="badge-count" id="wishlist-count">0</span>
+        </div>
+        <div class="action-icon" onclick="openCartDrawer()" title="Shopping Bag">
+          <i class="fa-solid fa-bag-shopping"></i>
+          <span class="badge-count" id="cart-count">0</span>
+        </div>
+        <div class="action-icon" onclick="openAccountModal()" title="Account & Orders">
+          <i class="fa-regular fa-user"></i>
+        </div>
+      </div>
+    </div>
+  </header>
+
+  <!-- Mobile Bottom Navigation Bar -->
+  <div class="mobile-nav">
+    <a href="#hero" class="mobile-nav-item active">
+      <i class="fa-solid fa-house"></i>
+      <span>Home</span>
+    </a>
+    <a href="#collection" class="mobile-nav-item">
+      <i class="fa-solid fa-grid-2"></i>
+      <span>Collection</span>
+    </a>
+    <a href="javascript:void(0)" onclick="openWishlistDrawer()" class="mobile-nav-item">
+      <i class="fa-regular fa-heart"></i>
+      <span>Wishlist</span>
+    </a>
+    <a href="javascript:void(0)" onclick="openCartDrawer()" class="mobile-nav-item">
+      <i class="fa-solid fa-bag-shopping"></i>
+      <span>Bag</span>
+    </a>
+    <a href="javascript:void(0)" onclick="openAccountModal()" class="mobile-nav-item">
+      <i class="fa-regular fa-user"></i>
+      <span>Account</span>
+    </a>
+  </div>
+
+  <!-- Hero Campaign Section -->
+  <section class="hero" id="hero">
+    <div class="container">
+      <div class="hero-grid">
+        <div class="hero-content">
+          <div class="hero-subtitle">The New Edit 2026</div>
+          <h1 class="hero-title brand-font">YOUR STYLE.<br>YOUR SHAIRA.</h1>
+          <p class="hero-desc">Elevate your daily presence with our curated ensemble of high-fashion wear, botanical beauty formulas, and hand-finished jewelry accessories. Designed exclusively for modern confidence.</p>
+          <div style="display: flex; gap: 1rem; flex-wrap: wrap;">
+            <a href="#collection" class="btn btn-primary">Explore SHAIRA Collection</a>
+            <a href="#why-shaira" class="btn btn-outline">Why SHAIRA</a>
+          </div>
+        </div>
+        <div class="hero-image-wrapper">
+          <img src="https://images.unsplash.com/photo-1490481651871-ab68de25d43d?auto=format&fit=crop&w=1000&q=80" alt="SHAIRA Fashion Campaign">
+        </div>
+      </div>
+    </div>
+  </section>
+
+  <!-- Main Unified Collection Section -->
+  <section class="container" id="collection" style="padding-top: 4rem; padding-bottom: 4rem;">
+    <div class="section-title-wrap">
+      <div class="section-subtitle">Curated Catalog</div>
+      <h2 class="section-title brand-font">SHAIRA COLLECTION</h2>
+    </div>
+
+    <!-- Collection Control Toolbar -->
+    <div class="collection-controls">
+      <div class="filter-tabs">
+        <button class="filter-btn active" onclick="filterCategory('All', this)">All Items</button>
+        <button class="filter-btn" onclick="filterCategory('Fashion', this)">Fashion</button>
+        <button class="filter-btn" onclick="filterCategory('Beauty', this)">Beauty</button>
+        <button class="filter-btn" onclick="filterCategory('Accessories', this)">Accessories</button>
+      </div>
+
+      <div class="search-sort-wrap">
+        <div class="search-box">
+          <i class="fa-solid fa-magnifying-glass"></i>
+          <input type="text" id="catalog-search" placeholder="Search catalog..." onkeyup="handleSearch(this.value)">
+        </div>
+        <select class="sort-select" onchange="handleSort(this.value)">
+          <option value="featured">Sort: Featured</option>
+          <option value="price-low">Price: Low to High</option>
+          <option value="price-high">Price: High to Low</option>
+          <option value="rating">Best Rated</option>
+        </select>
+      </div>
+    </div>
+
+    <!-- Dynamic Product Grid -->
+    <div class="product-grid" id="product-grid-container">
+      <!-- Dynamic Products injected via JS -->
+    </div>
+  </section>
+
+  <!-- Why SHAIRA Brand Highlights -->
+  <section id="why-shaira" style="background: var(--bg-alt); padding: 4rem 0;">
+    <div class="container">
+      <div class="section-title-wrap">
+        <div class="section-subtitle">The SHAIRA Promise</div>
+        <h2 class="section-title brand-font">WHY CHOOSE SHAIRA</h2>
+      </div>
+      <div style="display: grid; grid-template-columns: repeat(auto-fit, minmax(240px, 1fr)); gap: 2rem; text-align: center;">
+        <div style="padding: 1.5rem; background: #FFFFFF; border-radius: var(--radius-md);">
+          <i class="fa-solid fa-gem" style="font-size: 2rem; color: var(--accent-hover); margin-bottom: 1rem;"></i>
+          <h3 class="brand-font" style="font-size: 1.3rem; margin-bottom: 0.5rem;">Superior Quality</h3>
+          <p style="font-size: 0.85rem; color: var(--text-muted);">Crafted with premium fabrics, dermatologically safe cosmetics, and durable metals.</p>
+        </div>
+        <div style="padding: 1.5rem; background: #FFFFFF; border-radius: var(--radius-md);">
+          <i class="fa-solid fa-tag" style="font-size: 2rem; color: var(--accent-hover); margin-bottom: 1rem;"></i>
+          <h3 class="brand-font" style="font-size: 1.3rem; margin-bottom: 0.5rem;">Accessible Pricing</h3>
+          <p style="font-size: 0.85rem; color: var(--text-muted);">Luxury aesthetics priced fairly in Philippine Peso without standard retail markup.</p>
+        </div>
+        <div style="padding: 1.5rem; background: #FFFFFF; border-radius: var(--radius-md);">
+          <i class="fa-solid fa-truck-fast" style="font-size: 2rem; color: var(--accent-hover); margin-bottom: 1rem;"></i>
+          <h3 class="brand-font" style="font-size: 1.3rem; margin-bottom: 0.5rem;">Express Nationwide Shipping</h3>
+          <p style="font-size: 0.85rem; color: var(--text-muted);">Fast, tracked door-to-door delivery across Metro Manila and all PH provinces.</p>
+        </div>
+        <div style="padding: 1.5rem; background: #FFFFFF; border-radius: var(--radius-md);">
+          <i class="fa-solid fa-shield-halved" style="font-size: 2rem; color: var(--accent-hover); margin-bottom: 1rem;"></i>
+          <h3 class="brand-font" style="font-size: 1.3rem; margin-bottom: 0.5rem;">Secure PH Payments</h3>
+          <p style="font-size: 0.85rem; color: var(--text-muted);">Full support for Cash on Delivery, GCash e-wallets, and major Credit Cards.</p>
+        </div>
+      </div>
+    </div>
+  </section>
+
+  <!-- Customer Reviews Section -->
+  <section class="reviews-section" id="reviews">
+    <div class="container">
+      <div class="section-title-wrap">
+        <div class="section-subtitle">Real Experiences</div>
+        <h2 class="section-title brand-font">CUSTOMER REVIEWS & FEEDBACK</h2>
+      </div>
+      <div id="reviews-container" style="max-width: 800px; margin: 0 auto;">
+        <!-- Dynamically rendered reviews -->
+      </div>
+    </div>
+  </section>
+
+  <!-- Footer -->
+  <footer class="footer">
+    <div class="container">
+      <div class="footer-grid">
+        <div>
+          <h3 class="brand-logo brand-font" style="color: #FFFFFF; font-size: 2rem; margin-bottom: 1rem;">SHAIRA</h3>
+          <p style="font-size: 0.85rem; color: #CCCCCC; max-width: 300px;">SHAIRA is your modern destination for integrated fashion wear, dermatological cosmetics, and everyday accessories.</p>
+        </div>
+        <div>
+          <h4 class="footer-title">Navigation</h4>
+          <ul class="footer-links">
+            <li><a href="#hero">Home</a></li>
+            <li><a href="#collection">SHAIRA Collection</a></li>
+            <li><a href="#why-shaira">Why SHAIRA</a></li>
+            <li><a href="#reviews">Customer Reviews</a></li>
+          </ul>
+        </div>
+        <div>
+          <h4 class="footer-title">Customer Care</h4>
+          <ul class="footer-links">
+            <li><a href="javascript:void(0)" onclick="openAccountModal()">My Account</a></li>
+            <li><a href="javascript:void(0)" onclick="openAccountModal()">Order History</a></li>
+            <li><a href="#">Shipping Policy</a></li>
+            <li><a href="#">Returns & Exchanges</a></li>
+          </ul>
+        </div>
+        <div>
+          <h4 class="footer-title">Accepted Payments</h4>
+          <p style="font-size: 0.85rem; color: #CCCCCC; margin-bottom: 1rem;">All transactions processed in Philippine Peso (₱).</p>
+          <div style="display: flex; gap: 0.75rem; font-size: 1.5rem; color: var(--accent);">
+            <i class="fa-solid fa-money-bill-wave" title="Cash on Delivery"></i>
+            <i class="fa-solid fa-mobile-screen-button" title="GCash"></i>
+            <i class="fa-brands fa-cc-visa" title="Visa"></i>
+            <i class="fa-brands fa-cc-mastercard" title="Mastercard"></i>
+          </div>
+        </div>
+      </div>
+      <div class="footer-bottom">
+        &copy; 2026 SHAIRA Philippines. All Rights Reserved. Formatted in Philippine Peso (₱).
+      </div>
+    </div>
+  </footer>
+
+  <!-- Quick View Modal -->
+  <div class="modal-overlay" id="quickview-modal">
+    <div class="modal-card">
+      <button class="modal-close" onclick="closeQuickview()">&times;</button>
+      <div class="quickview-grid" id="quickview-content-target">
+        <!-- Dynamic Quick View Render -->
+      </div>
+    </div>
+  </div>
+
+  <!-- Cart Drawer -->
+  <div class="drawer" id="cart-drawer">
+    <div class="drawer-header">
+      <h3 class="brand-font" style="font-size: 1.4rem;">Your Shopping Bag</h3>
+      <button onclick="closeCartDrawer()" style="font-size: 1.2rem;">&times;</button>
+    </div>
+    <div class="drawer-body" id="cart-items-container">
+      <!-- Dynamic Cart Items -->
+    </div>
+    <div class="drawer-footer">
+      <div class="summary-row">
+        <span>Subtotal</span>
+        <span id="cart-subtotal">₱0</span>
+      </div>
+      <div class="summary-row">
+        <span>Estimated Delivery (PH)</span>
+        <span id="cart-shipping">₱99</span>
+      </div>
+      <div class="summary-row total">
+        <span>Total Amount</span>
+        <span id="cart-total">₱0</span>
+      </div>
+      <button class="btn btn-primary" style="width: 100%; margin-top: 1rem;" onclick="triggerCheckout()">Proceed to Checkout</button>
+    </div>
+  </div>
+
+  <!-- Account & Order History Modal -->
+  <div class="modal-overlay" id="account-modal">
+    <div class="modal-card" style="padding: 2rem; max-width: 650px;">
+      <button class="modal-close" onclick="closeAccountModal()">&times;</button>
+      <h2 class="brand-font" style="font-size: 2rem; margin-bottom: 1.5rem;">Account & Orders</h2>
+      
+      <div style="margin-bottom: 2rem; padding: 1rem; background: var(--bg-main); border-radius: var(--radius-sm);">
+        <h4 style="font-size: 0.95rem; margin-bottom: 0.25rem;">Customer Profile</h4>
+        <p style="font-size: 0.85rem; color: var(--text-muted);" id="user-profile-info">Standard Account • Philippine Shopping Region</p>
+      </div>
+
+      <h3 class="brand-font" style="font-size: 1.3rem; margin-bottom: 1rem;">Order History</h3>
+      <div id="order-history-container">
+        <!-- Order History Injected Here -->
+      </div>
+    </div>
+  </div>
+
+  <!-- Checkout Simulation Modal -->
+  <div class="modal-overlay" id="checkout-modal">
+    <div class="modal-card" style="padding: 2rem; max-width: 700px;">
+      <button class="modal-close" onclick="closeCheckoutModal()">&times;</button>
+      <h2 class="brand-font" style="font-size: 2rem; margin-bottom: 1.5rem;">SHAIRA Checkout</h2>
+      
+      <form id="checkout-form" onsubmit="processOrder(event)">
+        <div style="display: grid; grid-template-columns: 1fr 1fr; gap: 1rem; margin-bottom: 1rem;">
+          <div>
+            <label style="font-size: 0.8rem; font-weight: 600;">Full Name</label>
+            <input type="text" required style="width: 100%; padding: 0.6rem; border: 1px solid var(--border-color); border-radius: 4px;" placeholder="Maria Santos">
+          </div>
+          <div>
+            <label style="font-size: 0.8rem; font-weight: 600;">Mobile Number</label>
+            <input type="tel" required style="width: 100%; padding: 0.6rem; border: 1px solid var(--border-color); border-radius: 4px;" placeholder="09171234567">
+          </div>
+        </div>
+
+        <div style="margin-bottom: 1rem;">
+          <label style="font-size: 0.8rem; font-weight: 600;">Shipping Address (Philippines)</label>
+          <input type="text" required style="width: 100%; padding: 0.6rem; border: 1px solid var(--border-color); border-radius: 4px;" placeholder="Street name, Barangay, City, Province">
+        </div>
+
+        <div style="margin-bottom: 1.5rem;">
+          <label style="font-size: 0.8rem; font-weight: 600; display: block; margin-bottom: 0.5rem;">Payment Option</label>
+          <div style="display: flex; gap: 1rem; flex-wrap: wrap;">
+            <label style="display: flex; align-items: center; gap: 0.4rem; font-size: 0.85rem;">
+              <input type="radio" name="payment" value="COD" checked> Cash on Delivery (COD)
+            </label>
+            <label style="display: flex; align-items: center; gap: 0.4rem; font-size: 0.85rem;">
+              <input type="radio" name="payment" value="GCash"> GCash
+            </label>
+            <label style="display: flex; align-items: center; gap: 0.4rem; font-size: 0.85rem;">
+              <input type="radio" name="payment" value="Card"> Credit / Debit Card
+            </label>
+          </div>
+        </div>
+
+        <div style="padding: 1rem; background: var(--bg-alt); border-radius: var(--radius-sm); margin-bottom: 1.5rem;">
+          <div class="summary-row total">
+            <span>Amount Due</span>
+            <span id="checkout-total-val">₱0</span>
+          </div>
+        </div>
+
+        <button type="submit" class="btn btn-primary" style="width: 100%;">Place Order Now</button>
+      </form>
+    </div>
+  </div>
+
+  <!-- Dynamic Toast Notice -->
+  <div class="toast" id="toast-notice">
+    <i class="fa-solid fa-circle-check"></i>
+    <span id="toast-msg">Item added to bag</span>
+  </div>
+
+  <!-- ==========================================
+       SHAIRA JAVASCRIPT ENGINE
+       ========================================== -->
+  <script>
+    /* ------------------------------------------
+       1. 50 REALISTIC SHAIRA CATALOG PRODUCTS (PHP Pricing)
+       ------------------------------------------ */
+    const PRODUCTS = [
+      // FASHION: TOPS (₱299 - ₱799)
+      { id: 1, name: "Ribbed Knit Crop Top", category: "Fashion", subcategory: "Tops", price: 349, oldPrice: 499, badge: "New", rating: 4.8, reviews: 24, image: "https://images.unsplash.com/photo-1515886657613-9f3515b0c78f?auto=format&fit=crop&w=600&q=80", desc: "Breathable stretch cotton ribbed top designed for casual modern layering." },
+      { id: 2, name: "Satin Silk Button-Down Blouse", category: "Fashion", subcategory: "Tops", price: 699, oldPrice: null, badge: "Best Seller", rating: 4.9, reviews: 42, image: "https://images.unsplash.com/photo-1564257631407-4deb1f99d992?auto=format&fit=crop&w=600&q=80", desc: "Lustrous satin finish blouse tailored for work and evening outings." },
+      { id: 3, name: "Linen Relaxed Resort Shirt", category: "Fashion", subcategory: "Tops", price: 549, oldPrice: 699, badge: "Sale", rating: 4.6, reviews: 18, image: "https://images.unsplash.com/photo-1596755094514-f87e34085b2c?auto=format&fit=crop&w=600&q=80", desc: "Lightweight linen mix silhouette crafted for warm humid weather." },
+      { id: 4, name: "Off-Shoulder Ruched Top", category: "Fashion", subcategory: "Tops", price: 429, oldPrice: null, badge: "Trending", rating: 4.7, reviews: 31, image: "https://images.unsplash.com/photo-1503342217505-b0a15ec3261c?auto=format&fit=crop&w=600&q=80", desc: "Feminine ruched bodice with adjustable sleeves and elastic neckline." },
+      { id: 5, name: "Structured Minimalist Shell Top", category: "Fashion", subcategory: "Tops", price: 499, oldPrice: null, badge: null, rating: 4.5, reviews: 12, image: "https://images.unsplash.com/photo-1521572267360-ee0c2909d518?auto=format&fit=crop&w=600&q=80", desc: "Clean line sleeveless top suitable for elevated minimalist wardrobes." },
+
+      // FASHION: DRESSES (₱599 - ₱1,499)
+      { id: 6, name: "Floral Wrap Midi Dress", category: "Fashion", subcategory: "Dresses", price: 1199, oldPrice: 1499, badge: "Best Seller", rating: 4.9, reviews: 58, image: "https://images.unsplash.com/photo-1572804013309-59a88b7e92f1?auto=format&fit=crop&w=600&q=80", desc: "Flowy wrap midi dress printed with subtle botanical motifs." },
+      { id: 7, name: "Sleeveless Linen Tiered Sundress", category: "Fashion", subcategory: "Dresses", price: 899, oldPrice: null, badge: "New", rating: 4.8, reviews: 19, image: "https://images.unsplash.com/photo-1515372039744-b8f02a3ae446?auto=format&fit=crop&w=600&q=80", desc: "Breathable tiered silhouette featuring deep side pockets." },
+      { id: 8, name: "Elegant Satin Bodycon Slip Dress", category: "Fashion", subcategory: "Dresses", price: 1399, oldPrice: null, badge: "Limited", rating: 4.9, reviews: 27, image: "https://images.unsplash.com/photo-1595777457583-95e059d581b8?auto=format&fit=crop&w=600&q=80", desc: "Classic bias-cut satin dress with delicate adjustable spaghetti straps." },
+      { id: 9, name: "A-Line Cotton Eyelet Summer Dress", category: "Fashion", subcategory: "Dresses", price: 999, oldPrice: 1199, badge: "Sale", rating: 4.7, reviews: 36, image: "https://images.unsplash.com/photo-1496747611176-843222e1e57c?auto=format&fit=crop&w=600&q=80", desc: "Soft eyelet embroidered cotton body lined with gentle cotton slip." },
+
+      // FASHION: PANTS & JEANS (₱499 - ₱1,199)
+      { id: 10, name: "High-Waisted Wide Leg Trousers", category: "Fashion", subcategory: "Pants", price: 899, oldPrice: null, badge: "Best Seller", rating: 4.9, reviews: 64, image: "https://images.unsplash.com/photo-1509631179647-0177331693ae?auto=format&fit=crop&w=600&q=80", desc: "Tailored wide-leg trousers that elongate the silhouette effortlessly." },
+      { id: 11, name: "Vintage Wash Straight Denim Jeans", category: "Fashion", subcategory: "Jeans", price: 1099, oldPrice: 1299, badge: "Trending", rating: 4.8, reviews: 51, image: "https://images.unsplash.com/photo-1541099649105-f69ad21f3246?auto=format&fit=crop&w=600&q=80", desc: "Authentic heavy cotton denim with timeless straight leg cut." },
+      { id: 12, name: "Cropped Linen Drawstring Pants", category: "Fashion", subcategory: "Pants", price: 599, oldPrice: null, badge: null, rating: 4.5, reviews: 14, image: "https://images.unsplash.com/photo-1517445312882-bc9910d016b7?auto=format&fit=crop&w=600&q=80", desc: "Relaxed fit ankle pants with elasticated drawstring waistband." },
+
+      // FASHION: JACKETS & CARDIGANS (₱699 - ₱1,499)
+      { id: 13, name: "Soft Knit Open Cardigan", category: "Fashion", subcategory: "Cardigans", price: 799, oldPrice: 999, badge: "Sale", rating: 4.7, reviews: 29, image: "https://images.unsplash.com/photo-1434389677669-e08b4cac3105?auto=format&fit=crop&w=600&q=80", desc: "Ultra-soft ribbed knit cardigan suitable for air-conditioned spaces." },
+      { id: 14, name: "Oversized Denim Trucker Jacket", category: "Fashion", subcategory: "Jackets", price: 1299, oldPrice: null, badge: "Best Seller", rating: 4.9, reviews: 48, image: "https://images.unsplash.com/photo-1523205771623-e0faa4d2813d?auto=format&fit=crop&w=600&q=80", desc: "Classic blue wash denim jacket cut for a relaxed modern drop-shoulder fit." },
+      { id: 15, name: "Tailored Lightweight Blazer", category: "Fashion", subcategory: "Jackets", price: 1499, oldPrice: null, badge: "New", rating: 4.8, reviews: 15, image: "https://images.unsplash.com/photo-1584273143981-41c073dfe8f8?auto=format&fit=crop&w=600&q=80", desc: "Chic single-breasted blazer with thin shoulder structure." },
+
+      // BEAUTY: LIP PRODUCTS (₱199 - ₱499)
+      { id: 16, name: "Velvet Matte Lip Tint", category: "Beauty", subcategory: "Lip Products", price: 299, oldPrice: 399, badge: "Best Seller", rating: 4.9, reviews: 112, image: "https://images.unsplash.com/photo-1586495777744-4413f21062fa?auto=format&fit=crop&w=600&q=80", desc: "Weightless blurry matte formula that gives a long-lasting flush of color." },
+      { id: 17, name: "Hydrating Glass Lip Gloss", category: "Beauty", subcategory: "Lip Products", price: 249, oldPrice: null, badge: "Trending", rating: 4.8, reviews: 83, image: "https://images.unsplash.com/photo-1625093742435-6fa192b6fb10?auto=format&fit=crop&w=600&q=80", desc: "Non-sticky high shine gloss enriched with jojoba oil." },
+      { id: 18, name: "Nourishing Tinted Lip Balm", category: "Beauty", subcategory: "Lip Products", price: 199, oldPrice: null, badge: null, rating: 4.6, reviews: 39, image: "https://images.unsplash.com/photo-1599733589046-9b8308b5b50d?auto=format&fit=crop&w=600&q=80", desc: "Moisturizing daily balm with natural sheer reddish stain." },
+      { id: 19, name: "Longwear Liquid Lip Cream", category: "Beauty", subcategory: "Lip Products", price: 349, oldPrice: 449, badge: "Sale", rating: 4.7, reviews: 45, image: "https://images.unsplash.com/photo-1503236823255-94609f598e71?auto=format&fit=crop&w=600&q=80", desc: "Transfer-resistant cream formula with soft velvet payoff." },
+
+      // BEAUTY: BLUSH & HIGHLIGHTER (₱249 - ₱599)
+      { id: 20, name: "Dewy Cream Liquid Blush", category: "Beauty", subcategory: "Blush", price: 349, oldPrice: null, badge: "Best Seller", rating: 4.9, reviews: 94, image: "https://images.unsplash.com/photo-1596462502278-27bfdc403348?auto=format&fit=crop&w=600&q=80", desc: "Easy buildable blush formula that melts smoothly into skin." },
+      { id: 21, name: "Silky Powder Monochrome Blush", category: "Beauty", subcategory: "Blush", price: 299, oldPrice: 399, badge: null, rating: 4.7, reviews: 33, image: "https://images.unsplash.com/photo-1512496015851-a90fb38ba796?auto=format&fit=crop&w=600&q=80", desc: "Finely milled powder blush providing soft blur effect." },
+      { id: 22, name: "Luminous Glow Liquid Highlighter", category: "Beauty", subcategory: "Blush", price: 449, oldPrice: 549, badge: "New", rating: 4.8, reviews: 28, image: "https://images.unsplash.com/photo-1522337360788-8b13dee7a37e?auto=format&fit=crop&w=600&q=80", desc: "Reflective Pearl particles that deliver an instant wet-look sheen." },
+
+      // BEAUTY: FOUNDATION & CONCEALER (₱399 - ₱899)
+      { id: 23, name: "Skin-Like Satin Liquid Foundation", category: "Beauty", subcategory: "Foundation", price: 699, oldPrice: 849, badge: "Best Seller", rating: 4.9, reviews: 76, image: "https://images.unsplash.com/photo-1631729371254-42c2892f0e6e?auto=format&fit=crop&w=600&q=80", desc: "Medium buildable foundation designed for warm tropical climate durability." },
+      { id: 24, name: "Hydrating Radiant Concealer", category: "Beauty", subcategory: "Foundation", price: 399, oldPrice: null, badge: "Trending", rating: 4.8, reviews: 52, image: "https://images.unsplash.com/photo-1598440947619-2c35fc9aa908?auto=format&fit=crop&w=600&q=80", desc: "Crease-resistant full coverage concealer for dark circles and spots." },
+      { id: 25, name: "Blurring Translucent Setting Powder", category: "Beauty", subcategory: "Foundation", price: 499, oldPrice: 599, badge: null, rating: 4.7, reviews: 41, image: "https://images.unsplash.com/photo-1608248597560-84110398642a?auto=format&fit=crop&w=600&q=80", desc: "Micro-fine oil absorbing powder that sets makeup for 12 hours." },
+
+      // BEAUTY: EYESHADOW & TOOLS (₱149 - ₱999)
+      { id: 26, name: "Neutral Warm Nude Eyeshadow Palette", category: "Beauty", subcategory: "Eyeshadow", price: 799, oldPrice: 999, badge: "Best Seller", rating: 4.9, reviews: 68, image: "https://images.unsplash.com/photo-1583241800698-e8ab01830a07?auto=format&fit=crop&w=600&q=80", desc: "9 highly pigmented shades in matte, shimmer, and metallic finishes." },
+      { id: 27, name: "Precision Micro Eyeliner Pen", category: "Beauty", subcategory: "Eyeshadow", price: 299, oldPrice: null, badge: null, rating: 4.7, reviews: 37, image: "https://images.unsplash.com/photo-1620916566398-39f1143ab7be?auto=format&fit=crop&w=600&q=80", desc: "Waterproof brush tip liner for sharp winged eye application." },
+      { id: 28, name: "Velvet Soft Makeup Sponge Trio", category: "Beauty", subcategory: "Beauty Tools", price: 249, oldPrice: 349, badge: "Sale", rating: 4.8, reviews: 44, image: "https://images.unsplash.com/photo-1527799820374-dcf8d9d4a388?auto=format&fit=crop&w=600&q=80", desc: "Latex-free precision beauty sponges for flawless blending." },
+      { id: 29, name: "Essential 8-Piece Makeup Brush Set", category: "Beauty", subcategory: "Beauty Tools", price: 599, oldPrice: null, badge: "New", rating: 4.9, reviews: 21, image: "https://images.unsplash.com/photo-1596462502278-27bfdc403348?auto=format&fit=crop&w=600&q=80", desc: "Cruelty-free synthetic soft brushes with wooden luxury handles." },
+
+      // ACCESSORIES: BAGS (₱399 - ₱1,299)
+      { id: 30, name: "Structured Vegan Leather Shoulder Bag", category: "Accessories", subcategory: "Bags", price: 899, oldPrice: 1199, badge: "Best Seller", rating: 4.9, reviews: 87, image: "https://images.unsplash.com/photo-1584917865442-de89df76afd3?auto=format&fit=crop&w=600&q=80", desc: "Minimalist baguette shoulder bag with gold hardware magnetic flap." },
+      { id: 31, name: "Mini Crossbody Box Bag", category: "Accessories", subcategory: "Bags", price: 699, oldPrice: null, badge: "Trending", rating: 4.8, reviews: 56, image: "https://images.unsplash.com/photo-1548036328-c9fa89d128fa?auto=format&fit=crop&w=600&q=80", desc: "Compact everyday purse with detachable chain shoulder strap." },
+      { id: 32, name: "Canvas & Leather Everyday Tote Bag", category: "Accessories", subcategory: "Bags", price: 1099, oldPrice: 1299, badge: "Sale", rating: 4.7, reviews: 34, image: "https://images.unsplash.com/photo-1590874103328-eac38a683ce7?auto=format&fit=crop&w=600&q=80", desc: "Spacious heavy-duty canvas tote with genuine leather trimming." },
+      { id: 33, name: "Quilted Envelope Wallet with Chain", category: "Accessories", subcategory: "Bags", price: 499, oldPrice: null, badge: null, rating: 4.6, reviews: 29, image: "https://images.unsplash.com/photo-1627123424574-724758594e93?auto=format&fit=crop&w=600&q=80", desc: "Sleek cardholder wallet featuring multiple bill compartments." },
+
+      // ACCESSORIES: JEWELRY (₱199 - ₱699)
+      { id: 34, name: "18K Gold Plated Layered Necklace", category: "Accessories", subcategory: "Jewelry", price: 399, oldPrice: 549, badge: "Best Seller", rating: 4.9, reviews: 105, image: "https://images.unsplash.com/photo-1599643478518-a784e5dc4c8f?auto=format&fit=crop&w=600&q=80", desc: "Tarnish-resistant stainless steel double layer chain." },
+      { id: 35, name: "Freshwater Pearl Hoop Earrings", category: "Accessories", subcategory: "Jewelry", price: 299, oldPrice: null, badge: "Trending", rating: 4.8, reviews: 62, image: "https://images.unsplash.com/photo-1630019852942-f89202989a59?auto=format&fit=crop&w=600&q=80", desc: "Hypoallergenic gold hoops adorned with real mini baroque pearls." },
+      { id: 36, name: "Chunky Gold Dome Ring Set", category: "Accessories", subcategory: "Jewelry", price: 249, oldPrice: null, badge: null, rating: 4.7, reviews: 40, image: "https://images.unsplash.com/photo-1605100804763-247f67b3557e?auto=format&fit=crop&w=600&q=80", desc: "Set of 3 stackable high-polished minimalist rings." },
+      { id: 37, name: "Crystal Tennis Bracelet", category: "Accessories", subcategory: "Jewelry", price: 499, oldPrice: 699, badge: "Sale", rating: 4.8, reviews: 31, image: "https://images.unsplash.com/photo-1611591475155-4284fa289353?auto=format&fit=crop&w=600&q=80", desc: "Sparkling cubic zirconia stones in classic prong setting." },
+
+      // ACCESSORIES: WATCHES & SUNGLASSES (₱299 - ₱1,499)
+      { id: 38, name: "Minimalist Mesh Strap Watch", category: "Accessories", subcategory: "Watches", price: 999, oldPrice: 1299, badge: "Best Seller", rating: 4.9, reviews: 49, image: "https://images.unsplash.com/photo-1524805444758-089113d48a6d?auto=format&fit=crop&w=600&q=80", desc: "Japanese quartz movement watch with adjustable stainless mesh strap." },
+      { id: 39, name: "Square Classic Leather Dial Watch", category: "Accessories", subcategory: "Watches", price: 1199, oldPrice: null, badge: "New", rating: 4.8, reviews: 17, image: "https://images.unsplash.com/photo-1522335789203-aabd1fc54bc9?auto=format&fit=crop&w=600&q=80", desc: "Vintage inspired rectangular face paired with brown leather strap." },
+      { id: 40, name: "Retro Oval UV400 Sunglasses", category: "Accessories", subcategory: "Sunglasses", price: 349, oldPrice: 499, badge: "Trending", rating: 4.8, reviews: 73, image: "https://images.unsplash.com/photo-1511499767150-a48a237f0083?auto=format&fit=crop&w=600&q=80", desc: "90s style frame with glare protective dark tinted lenses." },
+      { id: 41, name: "Cat-Eye Acetate Sunglasses", category: "Accessories", subcategory: "Sunglasses", price: 499, oldPrice: null, badge: null, rating: 4.7, reviews: 22, image: "https://images.unsplash.com/photo-1572635196237-14b3f281503f?auto=format&fit=crop&w=600&q=80", desc: "Bold thick acetate frame designed for stylish sun protection." },
+
+      // ACCESSORIES: HAIR ACCESSORIES (₱99 - ₱299)
+      { id: 42, name: "Matte Pastel Claw Clips (Pack of 3)", category: "Accessories", subcategory: "Hair", price: 199, oldPrice: null, badge: "Best Seller", rating: 4.9, reviews: 90, image: "https://images.unsplash.com/photo-1607613009820-a29f7bb81c04?auto=format&fit=crop&w=600&q=80", desc: "Strong hold non-slip hair claws in neutral everyday shades." },
+      { id: 43, name: "Satin Silk Hair Scrunchies Set", category: "Accessories", subcategory: "Hair", price: 149, oldPrice: 229, badge: "Sale", rating: 4.8, reviews: 53, image: "https://images.unsplash.com/photo-1584297091622-af8e5ad6ffcd?auto=format&fit=crop&w=600&q=80", desc: "Gentle silk scrunchies that prevent hair friction and creasing." },
+      { id: 44, name: "Padded Velvet Headband", category: "Accessories", subcategory: "Hair", price: 249, oldPrice: null, badge: null, rating: 4.6, reviews: 19, image: "https://images.unsplash.com/photo-1535585209827-a15fcdbc4c2d?auto=format&fit=crop&w=600&q=80", desc: "Statement padded headband wrapped in plush velvet fabric." },
+      { id: 45, name: "Pearl Hair Pin Duo", category: "Accessories", subcategory: "Hair", price: 129, oldPrice: null, badge: null, rating: 4.5, reviews: 15, image: "https://images.unsplash.com/photo-1596462502278-27bfdc403348?auto=format&fit=crop&w=600&q=80", desc: "Delicate hair pins embellished with faux pearl clusters." },
+
+      // EXPANDED FASHION & BEAUTY EXCLUSIVES
+      { id: 46, name: "Pleated High-Waisted Tennis Skirt", category: "Fashion", subcategory: "Tops", price: 549, oldPrice: null, badge: "Trending", rating: 4.8, reviews: 38, image: "https://images.unsplash.com/photo-1583496661160-fb5886a0aaaa?auto=format&fit=crop&w=600&q=80", desc: "Classic pleated mini skirt with built-in inner shorts." },
+      { id: 47, name: "Matte Long-Lasting Setting Spray", category: "Beauty", subcategory: "Foundation", price: 449, oldPrice: 599, badge: "Sale", rating: 4.8, reviews: 47, image: "https://images.unsplash.com/photo-1620916566398-39f1143ab7be?auto=format&fit=crop&w=600&q=80", desc: "Fine mist setting spray controlling shine in PH heat." },
+      { id: 48, name: "Chunky Gold Link Bracelet", category: "Accessories", subcategory: "Jewelry", price: 349, oldPrice: null, badge: null, rating: 4.7, reviews: 26, image: "https://images.unsplash.com/photo-1611591475155-4284fa289353?auto=format&fit=crop&w=600&q=80", desc: "Statement chain link bracelet with toggle bar clasp." },
+      { id: 49, name: "Volumizing Waterproof Mascara", category: "Beauty", subcategory: "Eyeshadow", price: 329, oldPrice: null, badge: "Best Seller", rating: 4.9, reviews: 81, image: "https://images.unsplash.com/photo-1560700320-22c676d90e0e?auto=format&fit=crop&w=600&q=80", desc: "Smudge-proof fiber mascara for dramatic curl and length." },
+      { id: 50, name: "Cropped Knit Button Cardigan", category: "Fashion", subcategory: "Cardigans", price: 699, oldPrice: 899, badge: "New", rating: 4.8, reviews: 23, image: "https://images.unsplash.com/photo-1520591799316-6b30425429aa?auto=format&fit=crop&w=600&q=80", desc: "Soft pastel cardigan with tortoiseshell buttons." }
+    ];
+
+    /* ------------------------------------------
+       2. REALISTIC REVIEWS DATA
+       ------------------------------------------ */
+    const REVIEWS = [
+      { name: "Camille D.", rating: 5, date: "August 2026", product: "Velvet Matte Lip Tint", comment: "The shade is perfect for everyday PH weather! It doesn't dry out my lips and stays on even after meals. Will order again!", verified: true, helpful: 14 },
+      { name: "Bea Alonzo T.", rating: 5, date: "August 2026", product: "Floral Wrap Midi Dress", comment: "Fabric is very comfortable and light! Fits my exact measurements perfectly. Looks so sophisticated in person.", verified: true, helpful: 22 },
+      { name: "Patricia M.", rating: 4, date: "July 2026", product: "Structured Vegan Leather Shoulder Bag", comment: "Very elegant bag! Fits my phone, wallet, and lip tint easily. Gold chain hardware has good weight to it.", verified: true, helpful: 9 },
+      { name: "Alyssa R.", rating: 5, date: "July 2026", product: "18K Gold Plated Layered Necklace", comment: "No tarnishing at all even after wearing it under humid weather! Standard fast delivery to Quezon City.", verified: true, helpful: 18 }
+    ];
+
+    /* ------------------------------------------
+       3. STATE ENGINE & LOCALSTORAGE
+       ------------------------------------------ */
+    let cart = JSON.parse(localStorage.getItem('shaira_cart')) || [];
+    let wishlist = JSON.parse(localStorage.getItem('shaira_wishlist')) || [];
+    let orderHistory = JSON.parse(localStorage.getItem('shaira_orders')) || [
+      { id: "SHR-98214", date: "2026-08-01", total: 1547, status: "Delivered", items: "Floral Wrap Midi Dress + Velvet Matte Lip Tint" }
+    ];
+    let currentCategory = "All";
+    let currentSearch = "";
+    let currentSort = "featured";
+
+    /* ------------------------------------------
+       4. INITIALIZATION
+       ------------------------------------------ */
+    document.addEventListener("DOMContentLoaded", () => {
+      renderProducts();
+      renderReviews();
+      updateBadges();
+      renderCart();
+      renderOrderHistory();
+    });
+
+    // Helper: Formatter for Philippine Peso
+    function formatPHP(amount) {
+      return '₱' + amount.toLocaleString('en-PH');
+    }
+
+    /* ------------------------------------------
+       5. PRODUCT CATALOG RENDERER
+       ------------------------------------------ */
+    function renderProducts() {
+      const container = document.getElementById('product-grid-container');
+      let items = [...PRODUCTS];
+
+      // Filter by Category
+      if (currentCategory !== "All") {
+        items = items.filter(p => p.category === currentCategory);
+      }
+
+      // Filter by Search
+      if (currentSearch.trim() !== "") {
+        const query = currentSearch.toLowerCase();
+        items = items.filter(p => 
+          p.name.toLowerCase().includes(query) || 
+          p.subcategory.toLowerCase().includes(query) ||
+          p.desc.toLowerCase().includes(query)
+        );
+      }
+
+      // Sort
+      if (currentSort === "price-low") {
+        items.sort((a, b) => a.price - b.price);
+      } else if (currentSort === "price-high") {
+        items.sort((a, b) => b.price - a.price);
+      } else if (currentSort === "rating") {
+        items.sort((a, b) => b.rating - a.rating);
+      }
+
+      if (items.length === 0) {
+        container.innerHTML = `
+          <div style="grid-column: 1 / -1; text-align: center; padding: 4rem 1rem;">
+            <i class="fa-solid fa-magnifying-glass" style="font-size: 3rem; color: var(--text-muted); margin-bottom: 1rem;"></i>
+            <h3 class="brand-font" style="font-size: 1.5rem;">No SHAIRA items found</h3>
+            <p style="color: var(--text-muted); font-size: 0.9rem;">Try adjusting your search terms or filters.</p>
+          </div>
+        `;
+        return;
+      }
+
+      container.innerHTML = items.map(p => {
+        const isWishlisted = wishlist.includes(p.id);
+        const badgeClass = p.badge ? `badge-${p.badge.toLowerCase().replace(" ", "")}` : '';
+        
+        return `
+          <div class="product-card">
+            <div class="card-thumb">
+              ${p.badge ? `<span class="badge ${badgeClass} card-badge">${p.badge}</span>` : ''}
+              <button class="wishlist-btn ${isWishlisted ? 'active' : ''}" onclick="toggleWishlist(${p.id})">
+                <i class="${isWishlisted ? 'fa-solid' : 'fa-regular'} fa-heart"></i>
+              </button>
+              <img src="${p.image}" alt="${p.name}" loading="lazy">
+              <button class="quick-view-btn" onclick="openQuickview(${p.id})">
+                <i class="fa-solid fa-eye"></i> Quick View
+              </button>
+            </div>
+            <div class="card-body">
+              <div class="card-category">${p.subcategory}</div>
+              <h3 class="card-title">${p.name}</h3>
+              <div class="card-rating">
+                <i class="fa-solid fa-star"></i>
+                <span>${p.rating}</span>
+                <span class="rating-count">(${p.reviews})</span>
+              </div>
+              <div class="card-price-wrap">
+                <span class="card-price">${formatPHP(p.price)}</span>
+                ${p.oldPrice ? `<span class="card-price-old">${formatPHP(p.oldPrice)}</span>` : ''}
+              </div>
+              <button class="add-to-cart-btn" onclick="addToCart(${p.id})">
+                <i class="fa-solid fa-bag-shopping"></i> Add To Bag
+              </button>
+            </div>
+          </div>
+        `;
+      }).join('');
+    }
+
+    /* Filter Handlers */
+    function filterCategory(cat, btn) {
+      currentCategory = cat;
+      document.querySelectorAll('.filter-btn').forEach(b => b.classList.remove('active'));
+      btn.classList.add('active');
+      renderProducts();
+    }
+
+    function handleSearch(val) {
+      currentSearch = val;
+      renderProducts();
+    }
+
+    function handleSort(val) {
+      currentSort = val;
+      renderProducts();
+    }
+
+    /* ------------------------------------------
+       6. QUICK VIEW MODAL
+       ------------------------------------------ */
+    function openQuickview(id) {
+      const p = PRODUCTS.find(prod => prod.id === id);
+      if (!p) return;
+
+      const modal = document.getElementById('quickview-modal');
+      const target = document.getElementById('quickview-content-target');
+
+      target.innerHTML = `
+        <div class="quickview-img-wrap">
+          <img src="${p.image}" alt="${p.name}">
+        </div>
+        <div class="quickview-content">
+          <div class="card-category">${p.category} / ${p.subcategory}</div>
+          <h2 class="brand-font" style="font-size: 1.8rem; margin-bottom: 0.5rem;">${p.name}</h2>
+          <div class="card-rating" style="margin-bottom: 1rem;">
+            <i class="fa-solid fa-star"></i>
+            <span style="font-weight: 600;">${p.rating}</span>
+            <span class="rating-count">(${p.reviews} customer reviews)</span>
+          </div>
+          <div class="card-price-wrap" style="margin-bottom: 1rem;">
+            <span class="card-price" style="font-size: 1.5rem;">${formatPHP(p.price)}</span>
+            ${p.oldPrice ? `<span class="card-price-old" style="font-size: 1.1rem;">${formatPHP(p.oldPrice)}</span>` : ''}
+          </div>
+          <p style="font-size: 0.9rem; color: var(--text-muted); margin-bottom: 1.5rem;">${p.desc}</p>
+          <div style="display: flex; gap: 1rem; margin-bottom: 1.5rem;">
+            <button class="btn btn-primary" style="flex-grow: 1;" onclick="addToCart(${p.id}); closeQuickview();">
+              Add to Bag • ${formatPHP(p.price)}
+            </button>
+          </div>
+          <p style="font-size: 0.75rem; color: #2e7d32;"><i class="fa-solid fa-check"></i> In Stock • Ships within 24 Hours in the Philippines</p>
+        </div>
+      `;
+
+      modal.classList.add('active');
+    }
+
+    function closeQuickview() {
+      document.getElementById('quickview-modal').classList.remove('active');
+    }
+
+    /* ------------------------------------------
+       7. CART ENGINE
+       ------------------------------------------ */
+    function addToCart(id) {
+      const existing = cart.find(item => item.id === id);
+      if (existing) {
+        existing.qty += 1;
+      } else {
+        cart.push({ id: id, qty: 1 });
+      }
+      saveCart();
+      showToast("Added item to your bag.");
+    }
+
+    function changeQty(id, delta) {
+      const item = cart.find(i => i.id === id);
+      if (!item) return;
+      item.qty += delta;
+      if (item.qty <= 0) {
+        cart = cart.filter(i => i.id !== id);
+      }
+      saveCart();
+    }
+
+    function saveCart() {
+      localStorage.setItem('shaira_cart', JSON.stringify(cart));
+      updateBadges();
+      renderCart();
+    }
+
+    function renderCart() {
+      const container = document.getElementById('cart-items-container');
+      
+      if (cart.length === 0) {
+        container.innerHTML = `
+          <div style="text-align: center; padding: 3rem 1rem;">
+            <i class="fa-solid fa-bag-shopping" style="font-size: 2.5rem; color: var(--text-muted); margin-bottom: 1rem;"></i>
+            <p style="font-size: 0.95rem; color: var(--text-muted);">Your shopping bag is empty.</p>
+          </div>
+        `;
+        document.getElementById('cart-subtotal').innerText = formatPHP(0);
+        document.getElementById('cart-total').innerText = formatPHP(0);
+        return;
+      }
+
+      let subtotal = 0;
+      container.innerHTML = cart.map(item => {
+        const p = PRODUCTS.find(prod => prod.id === item.id);
+        if (!p) return '';
+        const itemTotal = p.price * item.qty;
+        subtotal += itemTotal;
+
+        return `
+          <div class="cart-item">
+            <img src="${p.image}" alt="${p.name}">
+            <div class="cart-item-details">
+              <div class="cart-item-title">${p.name}</div>
+              <div class="cart-item-price">${formatPHP(p.price)}</div>
+              <div class="quantity-control">
+                <button class="quantity-btn" onclick="changeQty(${p.id}, -1)">-</button>
+                <span class="quantity-input">${item.qty}</span>
+                <button class="quantity-btn" onclick="changeQty(${p.id}, 1)">+</button>
+              </div>
+            </div>
+            <button onclick="changeQty(${p.id}, -${item.qty})" style="color: var(--text-muted); font-size: 0.9rem;">
+              <i class="fa-solid fa-trash"></i>
+            </button>
+          </div>
+        `;
+      }).join('');
+
+      const shipping = subtotal > 1999 ? 0 : 99;
+      const total = subtotal + shipping;
+
+      document.getElementById('cart-subtotal').innerText = formatPHP(subtotal);
+      document.getElementById('cart-shipping').innerText = shipping === 0 ? "FREE" : formatPHP(shipping);
+      document.getElementById('cart-total').innerText = formatPHP(total);
+    }
+
+    function openCartDrawer() {
+      document.getElementById('cart-drawer').classList.add('active');
+    }
+
+    function closeCartDrawer() {
+      document.getElementById('cart-drawer').classList.remove('active');
+    }
+
+    /* ------------------------------------------
+       8. WISHLIST ENGINE
+       ------------------------------------------ */
+    function toggleWishlist(id) {
+      if (wishlist.includes(id)) {
+        wishlist = wishlist.filter(i => i !== id);
+        showToast("Removed from Wishlist");
+      } else {
+        wishlist.push(id);
+        showToast("Saved to Wishlist");
+      }
+      localStorage.setItem('shaira_wishlist', JSON.stringify(wishlist));
+      updateBadges();
+      renderProducts();
+    }
+
+    function openWishlistDrawer() {
+      if (wishlist.length === 0) {
+        showToast("Your wishlist is currently empty");
+        return;
+      }
+      // Open filter tab view for Wishlist items
+      showToast(`${wishlist.length} saved item(s) in Wishlist`);
+    }
+
+    /* ------------------------------------------
+       9. REVIEWS RENDERER
+       ------------------------------------------ */
+    function renderReviews() {
+      const container = document.getElementById('reviews-container');
+      container.innerHTML = REVIEWS.map(r => `
+        <div class="review-card">
+          <div class="review-header">
+            <div>
+              <span class="reviewer-name">${r.name}</span>
+              ${r.verified ? `<span class="verified-badge"><i class="fa-solid fa-circle-check"></i> Verified Buyer</span>` : ''}
+            </div>
+            <span style="font-size: 0.75rem; color: var(--text-muted);">${r.date}</span>
+          </div>
+          <div style="color: #ffc107; font-size: 0.8rem; margin-bottom: 0.4rem;">
+            ${'<i class="fa-solid fa-star"></i>'.repeat(r.rating)}
+          </div>
+          <p style="font-size: 0.85rem; margin-bottom: 0.4rem;"><strong>Product:</strong> ${r.product}</p>
+          <p style="font-size: 0.9rem; color: var(--text-main);">${r.comment}</p>
+          <button class="helpful-btn" onclick="this.innerText = '✓ Helpful (' + (${r.helpful} + 1) + ')'">
+            <i class="fa-regular fa-thumbs-up"></i> Helpful (${r.helpful})
+          </button>
+        </div>
+      `).join('');
+    }
+
+    /* ------------------------------------------
+       10. CHECKOUT & ORDER HISTORY
+       ------------------------------------------ */
+    function triggerCheckout() {
+      if (cart.length === 0) {
+        showToast("Add items to your bag before checking out.");
+        return;
+      }
+      closeCartDrawer();
+
+      let subtotal = cart.reduce((acc, item) => {
+        const p = PRODUCTS.find(prod => prod.id === item.id);
+        return acc + (p ? p.price * item.qty : 0);
+      }, 0);
+      const total = subtotal + (subtotal > 1999 ? 0 : 99);
+
+      document.getElementById('checkout-total-val').innerText = formatPHP(total);
+      document.getElementById('checkout-modal').classList.add('active');
+    }
+
+    function closeCheckoutModal() {
+      document.getElementById('checkout-modal').classList.remove('active');
+    }
+
+    function processOrder(e) {
+      e.preventDefault();
+
+      let subtotal = cart.reduce((acc, item) => {
+        const p = PRODUCTS.find(prod => prod.id === item.id);
+        return acc + (p ? p.price * item.qty : 0);
+      }, 0);
+      const total = subtotal + (subtotal > 1999 ? 0 : 99);
+
+      const newOrder = {
+        id: "SHR-" + Math.floor(10000 + Math.random() * 90000),
+        date: new Date().toISOString().split('T')[0],
+        total: total,
+        status: "Processing",
+        items: cart.map(i => {
+          const p = PRODUCTS.find(prod => prod.id === i.id);
+          return p ? p.name : '';
+        }).join(', ')
+      };
+
+      orderHistory.unshift(newOrder);
+      localStorage.setItem('shaira_orders', JSON.stringify(orderHistory));
+
+      // Reset cart
+      cart = [];
+      saveCart();
+      closeCheckoutModal();
+
+      showToast("Order placed successfully!");
+      renderOrderHistory();
+      openAccountModal();
+    }
+
+    function renderOrderHistory() {
+      const container = document.getElementById('order-history-container');
+      if (orderHistory.length === 0) {
+        container.innerHTML = `<p style="font-size: 0.85rem; color: var(--text-muted);">No orders found.</p>`;
+        return;
+      }
+
+      container.innerHTML = orderHistory.map(o => `
+        <div class="order-card">
+          <div class="order-header">
+            <div>
+              <strong>Order ID:</strong> ${o.id}<br>
+              <span style="font-size: 0.75rem; color: var(--text-muted);">${o.date}</span>
+            </div>
+            <span class="badge badge-new" style="align-self: center;">${o.status}</span>
+          </div>
+          <div style="font-size: 0.85rem; margin-bottom: 0.5rem;">${o.items}</div>
+          <div style="font-size: 0.95rem; font-weight: 700; color: var(--primary);">
+            Total Paid: ${formatPHP(o.total)}
+          </div>
+        </div>
+      `).join('');
+    }
+
+    function openAccountModal() {
+      document.getElementById('account-modal').classList.add('active');
+    }
+
+    function closeAccountModal() {
+      document.getElementById('account-modal').classList.remove('active');
+    }
+
+    /* ------------------------------------------
+       11. UTILITIES
+       ------------------------------------------ */
+    function updateBadges() {
+      const cartCount = cart.reduce((acc, i) => acc + i.qty, 0);
+      document.getElementById('cart-count').innerText = cartCount;
+      document.getElementById('wishlist-count').innerText = wishlist.length;
+    }
+
+    function showToast(msg) {
+      const toast = document.getElementById('toast-notice');
+      document.getElementById('toast-msg').innerText = msg;
+      toast.classList.add('show');
+      setTimeout(() => {
+        toast.classList.remove('show');
+      }, 3000);
+    }
+  </script>
+</body>
+</html>
